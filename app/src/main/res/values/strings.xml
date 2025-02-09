@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Doer</string>
+
+    <string name="note_card_thumbnail_accessibility">Thumbnail for %1$s</string>
+    <string name="note_card_due_date">Due: %1$s</string>
+    <string name="note_card_resolve_button_accessibility">Mark note as resolved</string>
+</resources>
