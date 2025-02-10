@@ -1,7 +1,6 @@
 package com.legion1900.doer.feature_list
 
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -99,7 +99,7 @@ fun NoteCard(
                                 noteCardData.dueDate
                             ),
                             style = MaterialTheme.typography.labelMedium.copy(
-                                color = MaterialTheme.colorScheme.primary
+                                color = MaterialTheme.colorScheme.secondary
                             ),
                             modifier = Modifier.padding(
                                 top = 4.dp,
@@ -120,7 +120,7 @@ fun NoteCard(
                         .size(40.dp)
                         .align(Alignment.CenterVertically)
                 ) {
-                    Image(
+                    Icon(
                         painter = painterResource(R.drawable.ic_check),
                         contentDescription = stringResource(R.string.note_card_resolve_button_accessibility),
                         modifier = Modifier.fillMaxSize()
