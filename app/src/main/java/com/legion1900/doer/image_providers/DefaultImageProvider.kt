@@ -1,4 +1,4 @@
-package com.legion1900.doer.feature_list
+package com.legion1900.doer.image_providers
 
 import com.legion1900.doer.R
 import com.legion1900.doer.common.DoerImage
