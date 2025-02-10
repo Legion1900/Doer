@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
-import com.legion1900.doer.feature_list.MainScreen
+import com.legion1900.doer.main_screen.MainScreen
 import com.legion1900.doer.ui.theme.DoerTheme
 
 class MainActivity : ComponentActivity() {

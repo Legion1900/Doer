@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -76,7 +75,6 @@ fun NoteCard(
                 contentDescription = thumbnailDescription,
                 modifier = Modifier
                     .weight(1f) // Take all unused space by UNWIEGHTED elements
-                    .clip(cardShape)
             )
 
             Spacer(modifier = Modifier.height(textVerticalPadding))
