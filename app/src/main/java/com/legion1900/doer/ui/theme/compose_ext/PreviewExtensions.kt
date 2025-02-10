@@ -8,7 +8,7 @@ import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import coil3.test.FakeImage
-import com.example.compose.DoerTheme
+import com.legion1900.doer.ui.theme.DoerTheme
 
 @Composable
 fun DoerPreview(
