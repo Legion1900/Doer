@@ -1,5 +1,6 @@
 package com.legion1900.doer.feature_list
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -27,6 +28,7 @@ fun NotesListScreen(modifier: Modifier = Modifier) {
 
     LazyColumn(
         contentPadding = PaddingValues(vertical = 12.dp, horizontal = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier.fillMaxSize()
     ) {
         items(data.size, key = { data[it].id }) { index ->
@@ -49,7 +51,7 @@ private fun getMockData(size: Int = 50): Array<NoteCardData> {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true, device = "spec:width=411dp,height=891dp")
+@Preview(showBackground = true, device = "spec:width=411dp,height=891dp")
 @Composable
 private fun NotesScreenPreview() {
     DoerPreview {
