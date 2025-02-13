@@ -11,6 +11,9 @@ composeBom = "2024.12.01"
 uiTextGoogleFonts = "1.7.6"
 coil = "3.0.4"
 ktor = "3.0.3"
+navVersion = "2.8.6"
+koinVersion = "3.5.6"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +32,10 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navVersion" }
+
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinVersion" }
+koin-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koinVersion" }
 
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
@@ -42,3 +49,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 
 [bundles]
 coil = ["coil-compose", "coil-ktor", "ktor-engines-okhttp", "coil-test"]
+koin = ["koin-compose", "koin-compose-navigation"]
