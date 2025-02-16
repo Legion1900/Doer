@@ -15,11 +15,11 @@ class NotesListViewModel(
     val state by lazy {
         val emptyState = NotesListScreenState(emptyList())
         flowOf<NotesListScreenState>()
-//        MutableStateFlow(NotesListScreenState(emptyList()))
             .onStart {
+                val data = notesProvider.getNotes(0, 10, false)
                 val initialState = reducer.reduce(
                     emptyState,
-                    NotesListScreenChanges.NewPage(notesProvider.getNotes(0, 10, false))
+                    NotesListScreenChanges.NewPage(data)
                 )
 
                 emit(initialState)
