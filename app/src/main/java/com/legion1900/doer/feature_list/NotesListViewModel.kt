@@ -2,21 +2,26 @@ package com.legion1900.doer.feature_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+
+private const val PAGE_SIZE = 10
 
 class NotesListViewModel(
     private val reducer: NotesListReducer,
     private val notesProvider: NoteCardsProvider,
 ) : ViewModel() {
 
+    private val _state = MutableSharedFlow<NotesListScreenState>()
+
     val state by lazy {
         val emptyState = NotesListScreenState(emptyList())
-        flowOf<NotesListScreenState>()
+        _state
             .onStart {
-                val data = notesProvider.getNotes(0, 10, false)
+                val data = notesProvider.getNotes(0, PAGE_SIZE, false)
                 val initialState = reducer.reduce(
                     emptyState,
                     NotesListScreenChanges.NewPage(data)
@@ -24,13 +29,31 @@ class NotesListViewModel(
 
                 emit(initialState)
             }
-            .stateIn(viewModelScope, SharingStarted.Eagerly, emptyState)
+            .stateIn(viewModelScope, SharingStarted.Eagerly, NotesListScreenState(emptyList()))
     }
 
     fun handleIntention(intent: NotesListIntent) {
         when (intent) {
             is NotesListIntent.MarkNoteAsDone -> TODO()
-            is NotesListIntent.ScrollingDown -> TODO()
+            is NotesListIntent.ScrollingDown -> {
+                handleScrollingDown(intent)
+            }
+        }
+    }
+
+    private fun handleScrollingDown(intent: NotesListIntent.ScrollingDown) {
+        val pagePart = intent.firstVisibleItemIndexedValue % PAGE_SIZE
+        if (pagePart >= PAGE_SIZE / 2) {
+            loadNextPage()
+        }
+    }
+
+    private fun loadNextPage() {
+        viewModelScope.launch {
+            val offset = state.value.notes.size
+            val data = notesProvider.getNotes(offset, PAGE_SIZE, false)
+            val newState = reducer.reduce(state.value, NotesListScreenChanges.NewPage(data))
+            _state.emit(newState)
         }
     }
 }
