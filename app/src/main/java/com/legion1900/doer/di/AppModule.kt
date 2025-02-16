@@ -1,5 +1,6 @@
 package com.legion1900.doer.di
 
+import com.legion1900.doer.feature_list.MarkNoteAsDoneUseCase
 import com.legion1900.doer.feature_list.NoteCardsProvider
 import com.legion1900.doer.feature_list.NotesListReducer
 import com.legion1900.doer.feature_list.NotesListViewModel
@@ -16,5 +17,6 @@ val appModule = module {
     singleOf(::InMemoryMockNotesStorage) bind NotesStorage::class
     factoryOf(::NoteCardsProvider)
     factoryOf(::NotesListReducer)
+    factoryOf(::MarkNoteAsDoneUseCase)
     viewModelOf(::NotesListViewModel)
 }

@@ -8,6 +8,7 @@ class NotesListReducer {
     ): NotesListScreenState {
         return when (changes) {
             is NotesListScreenChanges.NewPage -> reduceNewPage(currentState, changes)
+            is NotesListScreenChanges.RemoveNote -> reduceRemoveNote(currentState, changes)
         }
     }
 
@@ -16,5 +17,12 @@ class NotesListReducer {
         changes: NotesListScreenChanges.NewPage
     ): NotesListScreenState {
         return currentState.copy(notes = currentState.notes + changes.notes)
+    }
+
+    private fun reduceRemoveNote(
+        currentState: NotesListScreenState,
+        changes: NotesListScreenChanges.RemoveNote
+    ): NotesListScreenState {
+        return currentState.copy(notes = currentState.notes.filter { it.id != changes.noteId })
     }
 }

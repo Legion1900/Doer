@@ -26,6 +26,12 @@ class InMemoryMockNotesStorage : NotesStorage {
         currentNotes.add(0, note)
     }
 
+    override suspend fun markAsDone(noteId: String) {
+        currentNotes.indexOfFirst { it.id == noteId }
+            .takeIf { it != -1 }
+            ?.let { currentNotes[it] = currentNotes[it].copy(isDone = true) }
+    }
+
     private fun getMockData(size: Int = 50): Array<LocalNoteShort> {
         val baseTitle = "Note "
 

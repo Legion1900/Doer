@@ -24,4 +24,6 @@ interface NotesStorage {
     suspend fun getShortNotes(offset: Int, limit: Int, isDone: Boolean): List<LocalNoteShort>
 
     suspend fun addOrUpdate(note: LocalNoteShort)
+
+    suspend fun markAsDone(noteId: String)
 }

@@ -13,6 +13,7 @@ private const val PAGE_SIZE = 10
 class NotesListViewModel(
     private val reducer: NotesListReducer,
     private val notesProvider: NoteCardsProvider,
+    private val markNoteAsDoneUseCase: MarkNoteAsDoneUseCase
 ) : ViewModel() {
 
     private val _state = MutableSharedFlow<NotesListScreenState>()
@@ -34,10 +35,21 @@ class NotesListViewModel(
 
     fun handleIntention(intent: NotesListIntent) {
         when (intent) {
-            is NotesListIntent.MarkNoteAsDone -> TODO()
+            is NotesListIntent.MarkNoteAsDone -> handleMarkNoteAsDone(intent)
             is NotesListIntent.ScrollingDown -> {
                 handleScrollingDown(intent)
             }
+        }
+    }
+
+    private fun handleMarkNoteAsDone(intent: NotesListIntent.MarkNoteAsDone) {
+        viewModelScope.launch {
+            markNoteAsDoneUseCase.invoke(intent.noteId)
+        }
+        viewModelScope.launch {
+            val newState =
+                reducer.reduce(state.value, NotesListScreenChanges.RemoveNote(intent.noteId))
+            _state.emit(newState)
         }
     }
 

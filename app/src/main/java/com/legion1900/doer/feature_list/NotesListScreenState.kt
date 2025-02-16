@@ -10,4 +10,5 @@ data class NotesListScreenState(
 sealed interface NotesListScreenChanges {
 
     class NewPage(val notes: List<NoteCardData>) : NotesListScreenChanges
+    class RemoveNote(val noteId: String) : NotesListScreenChanges
 }

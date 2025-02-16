@@ -1,5 +1,6 @@
 package com.legion1900.doer.feature_list
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,7 +31,14 @@ fun NotesListScreen(
 
     NotifyScrollingDown(listState, viewModel)
 
-    NotesListScreen(screenState, listState, modifier)
+    NotesListScreen(
+        screenState,
+        listState,
+        onNoteDone = { noteId ->
+            viewModel.handleIntention(NotesListIntent.MarkNoteAsDone(noteId))
+        },
+        modifier,
+    )
 }
 
 @Composable
@@ -54,6 +62,7 @@ private fun NotifyScrollingDown(
 private fun NotesListScreen(
     state: NotesListScreenState,
     lazyListState: LazyListState = rememberLazyListState(),
+    onNoteDone: (noteId: String) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -63,7 +72,15 @@ private fun NotesListScreen(
         modifier = modifier.fillMaxSize(),
     ) {
         items(state.notes.size, key = { state.notes[it].id }) { index ->
-            NoteCard(state.notes[index], modifier = Modifier.height(250.dp))
+            NoteCard(state.notes[index], modifier = Modifier.height(250.dp)) { event ->
+                when (event) {
+                    is NoteCardEvent.CardClicked -> {
+                        Log.e("enigma", "Not implemented!")
+                    }
+
+                    is NoteCardEvent.ResolveClicked -> onNoteDone(event.note.id)
+                }
+            }
         }
     }
 }
