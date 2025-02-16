@@ -6,3 +6,8 @@ import androidx.compose.runtime.Immutable
 data class NotesListScreenState(
     val notes: List<NoteCardData>
 )
+
+sealed interface NotesListScreenChanges {
+
+    class NewPage(val notes: List<NoteCardData>) : NotesListScreenChanges
+}

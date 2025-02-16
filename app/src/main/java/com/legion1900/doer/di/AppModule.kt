@@ -1,5 +1,6 @@
 package com.legion1900.doer.di
 
+import com.legion1900.doer.feature_list.NoteCardsProvider
 import com.legion1900.doer.feature_list.NotesListReducer
 import com.legion1900.doer.feature_list.NotesListViewModel
 import com.legion1900.doer.storage.InMemoryMockNotesStorage
@@ -13,6 +14,7 @@ import org.koin.dsl.module
 val appModule = module {
 
     singleOf(::InMemoryMockNotesStorage) bind NotesStorage::class
+    factoryOf(::NoteCardsProvider)
     factoryOf(::NotesListReducer)
     viewModelOf(::NotesListViewModel)
 }
