@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.legion1900.doer.R
 import com.legion1900.doer.common.DoerImage
+import com.legion1900.doer.common.ResourceImage
 import com.legion1900.doer.common.coilModel
 import com.legion1900.doer.ui.theme.compose_ext.DoerPreview
 
@@ -141,7 +142,7 @@ private fun NoteCardWithDueDatePreview() {
             noteCardData = NoteCardData(
                 id = "1",
                 title = "Cool note",
-                thumbnail = DoerImage.ResourceImage(R.drawable.baloon),
+                thumbnail = ResourceImage(ResourceImage.Resource.BALOON),
                 dueDate = "12/12/2021"
             ),
             modifier = Modifier.height(300.dp)
@@ -159,7 +160,7 @@ private fun NoteCardNoDueDatePreview() {
             noteCardData = NoteCardData(
                 id = "1",
                 title = "Cool note",
-                thumbnail = DoerImage.ResourceImage(R.drawable.coast),
+                thumbnail = ResourceImage(ResourceImage.Resource.COAST),
                 dueDate = null
             )
         )

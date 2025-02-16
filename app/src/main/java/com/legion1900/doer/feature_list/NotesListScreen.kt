@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.legion1900.doer.image_providers.DefaultImageProvider
+import com.legion1900.doer.common.ResourceImage
 import com.legion1900.doer.ui.theme.compose_ext.DoerPreview
 import org.koin.androidx.compose.koinViewModel
 
@@ -47,12 +47,12 @@ private fun NotesScreenPreview() {
         val baseTitle = "Note "
 
         return Array(size) { index ->
-            val imageIndex = index % DefaultImageProvider.stockImageRes.size
+            val imageIndex = index % ResourceImage.Resource.entries.size
             NoteCardData(
                 index.toString(),
                 title = baseTitle + index,
                 dueDate = if (index % 2 == 0) "09.09.2025" else null,
-                thumbnail = DefaultImageProvider.stockImageRes[imageIndex]
+                thumbnail = ResourceImage(ResourceImage.Resource.entries[imageIndex])
             )
         }.toList()
     }

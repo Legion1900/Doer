@@ -42,6 +42,8 @@ coil-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coi
 coil-test = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 ktor-engines-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
+kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.2"
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

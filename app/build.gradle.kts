@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.bundles.coil)
 
     implementation(libs.bundles.koin)
+    implementation(libs.kotlinx.datetime)
 
     implementation(libs.androidx.navigation.compose)
 
