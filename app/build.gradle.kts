@@ -39,6 +39,12 @@ android {
     }
 }
 
+// Enabled by default since kotlin 2.0.20, has it's own quirks.
+composeCompiler {
+    // https://developer.android.com/develop/ui/compose/performance/stability/strongskipping
+    enableStrongSkippingMode = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
