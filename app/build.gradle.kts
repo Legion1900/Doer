@@ -43,6 +43,11 @@ android {
 composeCompiler {
     // https://developer.android.com/develop/ui/compose/performance/stability/strongskipping
     enableStrongSkippingMode = true
+
+    // Enables compose compiler reports.
+//    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+//    metricsDestination = layout.buildDirectory.dir("compose_compiler")
+
 }
 
 dependencies {
