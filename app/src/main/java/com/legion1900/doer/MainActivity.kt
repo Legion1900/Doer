@@ -12,11 +12,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
-import com.legion1900.doer.di.appModule
 import com.legion1900.doer.main_screen.MainScreen
 import com.legion1900.doer.ui.theme.DoerTheme
-import org.koin.compose.KoinApplication
-import org.koin.core.context.stopKoin
+import org.koin.androidx.compose.KoinAndroidContext
 
 class MainActivity : ComponentActivity() {
 
@@ -31,11 +29,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun App() {
-        KoinApplication(
-            {
-                modules(appModule)
-            }
-        ) {
+        KoinAndroidContext {
             DoerTheme {
                 MainScreen()
             }
@@ -50,13 +44,6 @@ class MainActivity : ComponentActivity() {
                 .logger(DebugLogger())
                 .build()
         }
-    }
-
-    override fun onDestroy() {
-        // Mandatory call to make sure koin app will not be recreated again on next onCreate call.
-        // Otherwise it will crash app.
-        stopKoin()
-        super.onDestroy()
     }
 }
 
