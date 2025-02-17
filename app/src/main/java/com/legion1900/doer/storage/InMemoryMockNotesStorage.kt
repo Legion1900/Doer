@@ -33,6 +33,7 @@ class InMemoryMockNotesStorage : NotesStorage {
     }
 
     private fun getMockData(size: Int = 50): Array<LocalNoteShort> {
+        val offset = currentNotes.size
         val baseTitle = "Note "
 
         return Array(size) { index ->
@@ -40,8 +41,8 @@ class InMemoryMockNotesStorage : NotesStorage {
             val resImage = ResourceImage(ResourceImage.Resource.entries[imageIndex])
             val thumbnail = imageMapper.mapToStorageImage(resImage)
             LocalNoteShort(
-                index.toString(),
-                title = baseTitle + index,
+                (offset + index).toString(),
+                title = baseTitle + (offset + index),
                 dueDate = if (index % 2 == 0) 1739553691 else null,
                 thumbnail = thumbnail,
                 isDone = false
