@@ -39,10 +39,11 @@ android {
     }
 }
 
-// Enabled by default since kotlin 2.0.20, has it's own quirks.
 composeCompiler {
+
+    // By now, it should be enabled by default cuz kotlin version > 2.0.20.
     // https://developer.android.com/develop/ui/compose/performance/stability/strongskipping
-    enableStrongSkippingMode = true
+    //  featureFlags.add(org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag.StrongSkipping)
 
     // Enables compose compiler reports.
 //    reportsDestination = layout.buildDirectory.dir("compose_compiler")
