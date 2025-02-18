@@ -43,11 +43,13 @@ coil-test = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 ktor-engines-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
 kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.2"
+kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = "org.jetbrains.kotlin.plugin.serialization:2.1.10"
 
 [bundles]
 coil = ["coil-compose", "coil-ktor", "ktor-engines-okhttp", "coil-test"]
