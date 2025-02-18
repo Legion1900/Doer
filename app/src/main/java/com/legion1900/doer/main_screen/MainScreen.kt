@@ -5,10 +5,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.legion1900.doer.feature_list.NotesListScreen
+import com.legion1900.doer.feature_list.NotesListScreenMode
 
 @Composable
 fun MainScreen() {
     Scaffold { innerPadding ->
-        NotesListScreen(modifier = Modifier.padding(innerPadding))
+        NotesListScreen(mode = NotesListScreenMode.TODO, modifier = Modifier.padding(innerPadding))
     }
 }

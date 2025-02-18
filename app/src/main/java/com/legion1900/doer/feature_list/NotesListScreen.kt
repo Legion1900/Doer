@@ -22,15 +22,23 @@ import com.legion1900.doer.common.vetoIf
 import com.legion1900.doer.ui.theme.compose_ext.DoerPreview
 import org.koin.androidx.compose.koinViewModel
 
+enum class NotesListScreenMode(
+    internal val isDone: Boolean
+) {
+    TODO(false),
+    DONE(true)
+}
+
 @Composable
 fun NotesListScreen(
+    mode: NotesListScreenMode,
     viewModel: NotesListViewModel = koinViewModel(),
     modifier: Modifier = Modifier
 ) {
     val screenState by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
 
-    NotifyScrollingDown(listState, viewModel)
+    NotifyScrollingDown(mode, listState, viewModel)
 
     NotesListScreen(
         screenState,
@@ -44,6 +52,7 @@ fun NotesListScreen(
 
 @Composable
 private fun NotifyScrollingDown(
+    mode: NotesListScreenMode,
     listState: LazyListState,
     viewModel: NotesListViewModel,
 ) {
@@ -54,7 +63,7 @@ private fun NotifyScrollingDown(
                 new < old
             }
             .collect { index ->
-                viewModel.handleIntention(NotesListIntent.ScrollingDown(index))
+                viewModel.handleIntention(NotesListIntent.ScrollingDown(index, mode.isDone))
             }
     }
 }
@@ -98,7 +107,8 @@ private fun NotesScreenPreview() {
                 index.toString(),
                 title = baseTitle + index,
                 dueDate = if (index % 2 == 0) "09.09.2025" else null,
-                thumbnail = ResourceImage(ResourceImage.Resource.entries[imageIndex])
+                thumbnail = ResourceImage(ResourceImage.Resource.entries[imageIndex]),
+                isDone = false
             )
         }.toList()
     }

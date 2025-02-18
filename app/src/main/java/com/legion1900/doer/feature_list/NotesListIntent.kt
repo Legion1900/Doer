@@ -4,6 +4,8 @@ sealed interface NotesListIntent {
 
     class MarkNoteAsDone(val noteId: String) : NotesListIntent
 
-    @JvmInline
-    value class ScrollingDown(val firstVisibleItemIndexedValue: Int) : NotesListIntent
+    class ScrollingDown(
+        val firstVisibleItemIndexedValue: Int,
+        val isDone: Boolean,
+    ) : NotesListIntent
 }

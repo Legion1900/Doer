@@ -5,16 +5,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
 import com.legion1900.doer.main_screen.MainScreen
 import com.legion1900.doer.ui.theme.DoerTheme
 import org.koin.androidx.compose.KoinAndroidContext
+import org.koin.core.annotation.KoinExperimentalAPI
 
 class MainActivity : ComponentActivity() {
 
@@ -27,6 +25,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @OptIn(KoinExperimentalAPI::class)
     @Composable
     private fun App() {
         KoinAndroidContext {
@@ -44,21 +43,5 @@ class MainActivity : ComponentActivity() {
                 .logger(DebugLogger())
                 .build()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DoerTheme {
-        Greeting("Android")
     }
 }

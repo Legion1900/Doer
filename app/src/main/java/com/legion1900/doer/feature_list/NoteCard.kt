@@ -39,6 +39,7 @@ data class NoteCardData(
     val id: String,
     val title: String,
     val thumbnail: DoerImage,
+    val isDone: Boolean,
     val dueDate: String?,
 )
 
@@ -111,19 +112,21 @@ fun NoteCard(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                TextButton(
-                    onClick = { onClick?.invoke(NoteCardEvent.ResolveClicked(noteCardData)) },
+                if (!noteCardData.isDone) {
+                    TextButton(
+                        onClick = { onClick?.invoke(NoteCardEvent.ResolveClicked(noteCardData)) },
 
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(40.dp)
-                        .align(Alignment.CenterVertically)
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_check),
-                        contentDescription = stringResource(R.string.note_card_resolve_button_accessibility),
-                        modifier = Modifier.fillMaxSize()
-                    )
+                        contentPadding = PaddingValues(0.dp),
+                        modifier = Modifier
+                            .size(40.dp)
+                            .align(Alignment.CenterVertically)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_check),
+                            contentDescription = stringResource(R.string.note_card_resolve_button_accessibility),
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
                 }
 
                 Spacer(Modifier.width(titleHorizontalPadding))
@@ -143,6 +146,7 @@ private fun NoteCardWithDueDatePreview() {
                 id = "1",
                 title = "Cool note",
                 thumbnail = ResourceImage(ResourceImage.Resource.BALOON),
+                isDone = false,
                 dueDate = "12/12/2021"
             ),
             modifier = Modifier.height(300.dp)
@@ -161,7 +165,8 @@ private fun NoteCardNoDueDatePreview() {
                 id = "1",
                 title = "Cool note",
                 thumbnail = ResourceImage(ResourceImage.Resource.COAST),
-                dueDate = null
+                dueDate = null,
+                isDone = true
             )
         )
     }

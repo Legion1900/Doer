@@ -28,6 +28,7 @@ class ShortNotesToCardMapper {
             note.id,
             note.title,
             thumbnail,
+            note.isDone,
             dueDate,
         )
     }
