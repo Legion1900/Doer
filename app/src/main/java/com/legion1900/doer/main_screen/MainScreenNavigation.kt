@@ -1,30 +1,19 @@
 package com.legion1900.doer.main_screen
 
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.legion1900.doer.feature_list.NotesListScreen
 import com.legion1900.doer.feature_list.NotesListScreenMode
 import kotlinx.serialization.Serializable
 
-@Serializable
-object ToDoScreenRoute
+sealed interface MainScreenDestination {
 
-@Serializable
-object DoneScreenRoute
+    val mode: NotesListScreenMode
 
-fun NavGraphBuilder.defineToDoScreen(
-    modifier: Modifier,
-) {
-    composable<ToDoScreenRoute> {
-        NotesListScreen(mode = NotesListScreenMode.TODO, modifier = modifier)
+    @Serializable
+    data object ToDoScreen : MainScreenDestination {
+        override val mode: NotesListScreenMode = NotesListScreenMode.TODO
     }
-}
 
-fun NavGraphBuilder.defineDoneScreen(
-    modifier: Modifier
-) {
-    composable<DoneScreenRoute> {
-        NotesListScreen(mode = NotesListScreenMode.DONE, modifier = modifier)
+    @Serializable
+    data object DoneScreen : MainScreenDestination {
+        override val mode: NotesListScreenMode = NotesListScreenMode.DONE
     }
 }

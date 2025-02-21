@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.NonSkippableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
@@ -50,6 +51,7 @@ fun NotesListScreen(
     )
 }
 
+@NonSkippableComposable
 @Composable
 private fun NotifyScrollingDown(
     mode: NotesListScreenMode,
@@ -85,7 +87,7 @@ private fun NotesListScreen(
             NoteCard(note, modifier = Modifier.height(250.dp)) { event ->
                 when (event) {
                     is NoteCardEvent.CardClicked -> {
-                        Log.e("enigma", "Not implemented!")
+                        Log.e(NotesListViewModel::class.simpleName, "Not implemented!")
                     }
 
                     is NoteCardEvent.ResolveClicked -> onNoteDone(event.note.id)

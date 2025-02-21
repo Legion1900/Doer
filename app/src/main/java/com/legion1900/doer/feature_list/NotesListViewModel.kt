@@ -56,14 +56,14 @@ class NotesListViewModel(
     private fun handleScrollingDown(intent: NotesListIntent.ScrollingDown) {
         val pagePart = intent.firstVisibleItemIndexedValue % PAGE_SIZE
         if (pagePart >= PAGE_SIZE / 2) {
-            loadNextPage()
+            loadNextPage(intent.isDone)
         }
     }
 
-    private fun loadNextPage() {
+    private fun loadNextPage(isDone: Boolean) {
         viewModelScope.launch {
             val offset = state.value.notes.size
-            val data = notesProvider.getNotes(offset, PAGE_SIZE, false)
+            val data = notesProvider.getNotes(offset, PAGE_SIZE, isDone)
             val newState = reducer.reduce(state.value, NotesListScreenChanges.NewPage(data))
             _state.emit(newState)
         }

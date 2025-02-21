@@ -13,7 +13,7 @@ fun NavGraphBuilder.defineMainScreen(
     onAddNoteClick: () -> Unit
 ) {
     composable<MainScreenRoute> {
-        MainScreen(onNoteClick, onAddNoteClick)
+        MainScreen(onNoteClick = onNoteClick, onAddNoteClick = onAddNoteClick)
     }
 }
 
