@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.util.DebugLogger
-import com.legion1900.doer.main_screen.MainScreen
 import com.legion1900.doer.ui.theme.DoerTheme
 import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            initCoilImageLoader()
+            initCustomCoilImageLoader()
             App()
         }
     }
@@ -30,14 +29,14 @@ class MainActivity : ComponentActivity() {
     private fun App() {
         KoinAndroidContext {
             DoerTheme {
-                MainScreen()
+                DoerNavHost()
             }
         }
     }
 
     @SuppressLint("ComposableNaming")
     @Composable
-    private fun initCoilImageLoader() {
+    private fun initCustomCoilImageLoader() {
         setSingletonImageLoaderFactory { context ->
             ImageLoader.Builder(context)
                 .logger(DebugLogger())
